@@ -1,0 +1,1 @@
+$('.menu').load('menu.html');

@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>后台管理</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+</head>
+<body>
+<div class="footer"></div>
+<div class="container clearfix">
+    <div class="sidebar-wrap menu"></div>
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">用户管理</a><span class="crumb-step">&gt;</span><span>新增作品</span></div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="" method="post" id="myform" name="myform" >
+                    <table class="insert-tab" width="100%">
+                        <tbody><tr>
+                            <th width="120"><i class="require-red">*</i>分类：</th>
+                            <td>
+                                <select name="" id="catid" class="required">
+                                    <option value="">请选择</option>
+                                    <option value="19">精品界面</option><option value="20">推荐界面</option>
+                                </select>
+                            </td>
+                        </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>用户名：</th>
+                                <td>
+                                    <input class="common-text required"  name="username" id="title" size="50" value="" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>登录密码：</th>
+                                <td><input class="common-text"name="password" size="50" value="" type="text"></td>
+                            </tr>
+                        <tr>
+                            <th>确认密码：</th>
+                            <td><input class="common-text" name="repassword" size="50" value="" type="text"></td>
+                        </tr>
+                        <tr>
+                            <th>性别：</th>
+                            <td><input type="radio" name="sex"  value="男" checked="checked">男
+                                <input type="radio" name="sex"  value="女" >女
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>出生日期：</th>
+                            <td><input class="common-text" name="birthday" size="50" value="" type="date"></td>
+                        </tr>
+                        <tr>
+                            <th>电子邮箱：</th>
+                            <td><input class="common-text" name="email" size="50" value="" type="text"></td>
+                        </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                    <input class="btn btn6" onClick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--/main-->
+</div>
+</body>
+<script src="../js/jquery-1.12.4.min.js"></script>
+<script src="js/header.js"></script>
+<script src="js/menu.js"></script>
+<script>
+
+    $(function () {
+        //1.给登录按钮绑定单击事件
+        $("#myform").submit(function () {
+            //2.发送ajax请求，提交表单数据
+            $.post("user/insert",$(this).serialize(),function (data) {
+                //data : {flag:false,errorMsg:''}
+                if(data.flag){
+                    //登录成功
+                    location.href="index.html";
+                }else{
+                    //登录失败
+                    $("#errorMsg").html(data.errorMsg);
+                }
+            });
+            //2.不让页面跳转
+            return false;
+            //如果这个方法没有返回值，或者返回为true，则表单提交，如果返回为false，则表单不提交
+        });
+    });
+
+
+    //3.处理响应结果
+
+
+
+</script>
+</html>
